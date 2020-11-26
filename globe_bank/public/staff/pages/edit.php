@@ -1,7 +1,7 @@
 <?php
 
 require_once('../../../private/initialize.php');
-
+require_login();
 if(!isset($_GET['id'])){
   redirect_to(url_for('/staff/pages/new.php'));
 }
@@ -29,6 +29,7 @@ if(is_post_request()){
 
   $result = update_page($page);
   if($result === true){
+    $_SESSION['status'] = 'Successfully edited an existing page';
     redirect_to(url_for('/staff/pages/show.php?id=' . $page['id']));
   }else{
     $errors = $result;
@@ -50,16 +51,13 @@ if(is_post_request()){
     <h1>Edit Page</h1>
     <?php echo display_errors($errors); ?>
     <form action="<?php echo url_for('/staff/pages/edit.php?id=' . h(u($id))) ?>" method="post">
-      <!-- <dl>
-        <dt>Subject ID</dt>
-        <dd><input type="text" name="subject_id" value="<?php echo h($page['subject_id']) ?>" /></dd>
-      </dl> -->
+
       <dl>
         <dt>Subject</dt>
         <dd>
           <select name="subject_id">
             <?php for($i=1;$i <= $subject_count; $i++): ?>
-              <?php $curr_subject = get_menu_name($i); ?>
+              <?php $curr_subject = get_menu_name($page['subject_id']); ?>
               <option value="<?php echo $i; ?>"  <?php echo $page['position'] == $i ?'selected':'' ?>><?php echo $curr_subject; ?></option>
             <?php endfor; ?>
           </select>

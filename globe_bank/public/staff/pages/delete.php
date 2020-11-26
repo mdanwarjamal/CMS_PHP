@@ -1,7 +1,7 @@
 <?php
 
 require_once('../../../private/initialize.php');
-
+require_login();
 if(!isset($_GET['id'])) {
   redirect_to(url_for('/staff/pages/index.php'));
 }
@@ -10,6 +10,7 @@ $id = $_GET['id'];
 
 if(is_post_request()) {
   delete_page($id);
+  $_SESSION['status'] = 'Successfully deleted the existing page';
   redirect_to(url_for('/staff/pages/index.php'));
 }else{
 

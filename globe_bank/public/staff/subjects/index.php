@@ -1,5 +1,6 @@
 <?php require_once '../../../private/initialize.php'; ?>
 <?php
+  require_login();
   $subject_set = find_all_subjects();
 
 
@@ -12,6 +13,9 @@
     <div class="actions">
       <a class="action" href="<?php echo url_for('/staff/subjects/new.php') ?>">Create New Subject</a>
     </div>
+    <!-- <div class="success" >
+      <h3 style="color:green;"><?php //echo $_SESSION['status']??''; unset($_SESSION['status']); ?></h3>
+    </div> -->
     <table class="list">
       <tr>
         <th>ID</th>

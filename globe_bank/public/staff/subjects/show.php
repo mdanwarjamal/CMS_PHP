@@ -1,5 +1,6 @@
 <?php require_once '../../../private/initialize.php'; ?>
 <?php
+  require_login();
   $id = $_GET['id']??'1';
   $subject = find_subject_by_id($id);
 ?>
@@ -8,6 +9,9 @@
 <div id="content">
   <a class="back-link" href="<?php echo url_for('/staff/subjects/index.php'); ?>">&laquo; Back to List</a>
   <div class="subject show">
+    <!-- <div class="success" >
+      <h3 style="color:green;"><?php //echo $_SESSION['status']??''; unset($_SESSION['status']); ?></h3>
+    </div> -->
     <h1><?php echo h($subject['menu_name']); ?></h1>
     <div >
       <dl>

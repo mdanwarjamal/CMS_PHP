@@ -1,5 +1,6 @@
 <?php
   require_once('../../../private/initialize.php');
+  require_login();
   if(!isset($_GET['id'])){
     redirect_to(url_for('/staff/subjects/new.php'));
   }
@@ -20,6 +21,7 @@
 
     $result = update_subject($subject);
     if($result === true){
+      $_SESSION['status'] = 'Successfully edited an existing subject';
       redirect_to(url_for('/staff/subjects/show.php?id=' . $subject['id']));
     }
     else{

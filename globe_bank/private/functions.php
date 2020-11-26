@@ -51,3 +51,19 @@
     }
     return $output;
   }
+
+  function get_and_clear_session_message(){
+    if(isset($_SESSION['status']) && $_SESSION['status'] != ''){
+      $msg = $_SESSION['status'];
+      unset($_SESSION['status']);
+      return $msg;
+    }
+  }
+
+  function display_session_message(){
+    $msg = get_and_clear_session_message();
+    if(!is_blank($msg)){
+      $style_string = "color: #0055DD;background: white;border: 2px solid #0055DD;padding: 1em 15px;margin: 1em 30px;width: 890px;";
+      return '<div id="message" style="' . "$style_string" . '">' . h($msg) . '</div>';
+    }
+  }

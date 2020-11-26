@@ -1,5 +1,6 @@
 <?php require_once '../../../private/initialize.php'; ?>
 <?php
+  require_login();
   $page_set = find_all_pages();
 ?>
 <?php $page_title = 'Pages'; ?>
@@ -10,6 +11,9 @@
     <div class="actions">
       <a class="action" href="<?php echo url_for('/staff/pages/new.php') ?>">Create New Pages</a>
     </div>
+    <!-- <div class="success" >
+      <h3 style="color:green;"><?php //echo $_SESSION['status']??''; unset($_SESSION['status']); ?></h3>
+    </div> -->
     <table class="list">
       <tr>
         <th>ID</th>
